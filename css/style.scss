@@ -1,0 +1,534 @@
+/* SETTING
+------------------------------*/
+$main-color: #bce2e8;
+$accent-color: #192a3c;
+
+@import url("https://fonts.googleapis.com/css2?family=Yomogi&display=swap");
+
+$breakpoints: (
+    "sm": "screen and (min-width: 400px)",
+    "md": "screen and (min-width: 768px)",
+    "lg": "screen and (min-width: 1000px)",
+    "xl": "screen and (min-width: 1200px)"
+) !default;
+
+@mixin mq($breakpoint) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+@mixin inner($w: 85%, $mw: 1280px) {
+    width: $w;
+    max-width: $mw;
+    margin-left: auto;
+    margin-right: auto;
+}
+@mixin flex($a: center, $j: space-between) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: $j;
+    align-items: $a;
+}
+
+@mixin after-css {
+    position: absolute;
+    opacity: 0.1;
+    font-size: 200%;
+    top: 45px;
+    left: -5vw;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: $accent-color;
+}
+
+body {
+    font-family: "Yomogi", cursive;
+    color: $accent-color;
+}
+/* アクティブになったエリア */
+#g-nav.panelactive {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+/* 丸の拡大 */
+.circle-bg {
+    position: fixed;
+    z-index: 3;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: $accent-color;
+    box-shadow:
+        rgba(0, 0, 0, 0.12) 0px 1px 3px,
+        rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    transform: scale(0);
+    right: -50px;
+    top: -50px;
+    transition: all 0.7s;
+}
+
+.circle-bg.circleactive {
+    transform: scale(50);
+}
+
+.open-menu {
+    overflow: hidden;
+}
+
+/* ナビゲーション */
+#g-nav ul {
+    opacity: 0;
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    a {
+        color: $main-color;
+    }
+}
+
+/* 背景が出現後にナビゲーションを表示 */
+#g-nav.panelactive ul {
+    opacity: 1;
+    li {
+        font-size: 22px;
+        animation-name: gnaviAnime;
+        animation-duration: 1.3s;
+        animation-delay: 0.2s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+}
+
+@keyframes gnaviAnime {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* リストのレイアウト設定 */
+#g-nav li {
+    text-align: center;
+    list-style: none;
+    a {
+        font-size: 30px;
+        text-decoration: none;
+        padding: 10px;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+}
+
+@keyframes border-transform {
+    0%,
+    100% {
+        border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+    }
+
+    14% {
+        border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%;
+    }
+    28% {
+        border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%;
+    }
+    42% {
+        border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%;
+    }
+    56% {
+        border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%;
+    }
+    70% {
+        border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%;
+    }
+    84% {
+        border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
+    }
+}
+/* ボタンのためのCSS */
+.openbtn {
+    position: fixed;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: border-transform 7s linear infinite;
+    box-shadow:
+        rgba(0, 0, 0, 0.12) 0px 1px 3px,
+        rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    top: 6vh;
+    right: 6vw;
+    z-index: 9999;
+    cursor: pointer;
+    width: 75px;
+    height: 75px;
+
+    span {
+        display: inline-block;
+        transition: all 0.4s;
+        position: absolute;
+        left: 21px;
+        height: 3px;
+        border-radius: 2px;
+        background-color: $accent-color;
+        width: 45%;
+
+        &:nth-of-type(1) {
+            top: 22.5px;
+        }
+
+        &:nth-of-type(2) {
+            top: 34.5px;
+        }
+
+        &:nth-of-type(3) {
+            top: 46.5px;
+        }
+    }
+
+    &.active {
+        span:nth-of-type(1) {
+            top: 29px;
+            left: 21px;
+            transform: translateY(6px) rotate(-45deg);
+            width: 45%;
+        }
+
+        span:nth-of-type(2) {
+            opacity: 0;
+        }
+
+        span:nth-of-type(3) {
+            top: 41px;
+            left: 20px;
+            transform: translateY(-6px) rotate(45deg);
+            width: 45%;
+        }
+    }
+}
+
+.header {
+    background-color: $main-color;
+    height: 100vh;
+    width: 100%;
+    margin-bottom: 100px;
+    &__text {
+        @include flex(center, center);
+        position: relative;
+        top: 50vh;
+        text-align: center;
+
+        .fade {
+            @include flex(center, center);
+            span {
+                margin: 5px;
+                width: fit-content;
+                opacity: 0;
+                bottom: 50px;
+                text-align: center;
+            }
+        }
+        p {
+            font-size: 36px;
+
+            display: inline;
+            padding: 10px 20px;
+            border-radius: 70px;
+        }
+    }
+    &__title {
+        opacity: 0;
+        animation: fade-anim 0.8s 1.2s forwards;
+    }
+}
+
+.fade span:nth-child(1) {
+    animation: fade-anim 0.8s 0s forwards;
+}
+.fade span:nth-child(2) {
+    animation: fade-anim 0.8s 0.1s forwards;
+}
+.fade span:nth-child(3) {
+    animation: fade-anim 0.8s 0.2s forwards;
+}
+
+.fade span:nth-child(4) {
+    animation: fade-anim 0.8s 0.3s forwards;
+}
+
+.fade span:nth-child(5) {
+    animation: fade-anim 0.8s 0.4s forwards;
+}
+
+.fade span:nth-child(6) {
+    animation: fade-anim 0.8s 0.5s forwards;
+}
+
+.fade span:nth-child(7) {
+    animation: fade-anim 0.8s 0.6s forwards;
+}
+.fade span:nth-child(8) {
+    animation: fade-anim 0.8s 0.7s forwards;
+}
+.fade span:nth-child(9) {
+    animation: fade-anim 0.8s 0.8s forwards;
+}
+.fade span:nth-child(10) {
+    animation: fade-anim 0.8s 0.9s forwards;
+}
+
+@keyframes fade-anim {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.main {
+    @include inner();
+    margin-bottom: 150px;
+}
+
+.works {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10%;
+    @include mq(md) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+@keyframes after-anim {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.work {
+    width: 100%;
+    margin: auto;
+
+    &__img {
+        transition: 0.3s;
+        box-shadow:
+            #0000001f 0px 1px 3px,
+            rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        width: 100%;
+        aspect-ratio: 1/1;
+        position: relative;
+        &:hover {
+            img {
+                filter: blur(20px);
+            }
+            box-shadow:
+                rgba(0, 0, 0, 0.19) 0px 10px 20px,
+                rgba(0, 0, 0, 0.23) 0px 6px 6px;
+            border-radius: 15px;
+            &::after {
+                content: "";
+                background: url(../images/musimegane.svg);
+                width: 50%;
+                height: 50%;
+                display: inline-block;
+                position: absolute;
+                transition: 1.5s;
+                top: 25%;
+                left: 25%;
+                animation: after-anim 1.5s;
+            }
+        }
+        img {
+            padding: 15%;
+            transition: 0.5s;
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+        }
+    }
+    &__title {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+}
+
+.profile {
+    @include mq(sm) {
+    }
+    &__inner {
+        @include inner();
+    }
+    &__about {
+        @include mq(sm) {
+            @include flex(center, center);
+        }
+    }
+    &__title {
+        padding-top: 100px;
+        margin-bottom: 100px;
+        font-size: 50px;
+        position: relative;
+        &::after {
+            content: "Profile";
+            @include after-css();
+        }
+    }
+    &__img {
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        @include mq(md) {
+            width: 100%;
+            margin: 0;
+        }
+        img {
+            transform: scale(1.1) translateX(13px);
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        @include mq(md) {
+            width: 30%;
+            margin-right: 25px;
+        }
+    }
+    &__text {
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+        width: fit-content;
+        @include mq(md) {
+            width: 30%;
+            margin: 0;
+            margin-left: 25px;
+        }
+    }
+    &__name {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 30px;
+        @include mq(md) {
+            text-align-last: left;
+            margin-top: 0;
+        }
+    }
+}
+
+.hobby {
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        padding-top: 100px;
+        margin-bottom: 100px;
+        font-size: 50px;
+        position: relative;
+        &::after {
+            content: "hobby";
+            @include after-css();
+        }
+    }
+    &__text {
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        @include mq(lg) {
+            margin: 0;
+        }
+    }
+    &__list {
+        @include flex(center, center);
+        flex-wrap: nowrap;
+        margin-top: 50px;
+        @include mq(lg) {
+            margin: 0;
+        }
+    }
+    &__item {
+        margin: 0 15px;
+        width: 20%;
+        @include mq(sm) {
+            width: 70px;
+        }
+    }
+    &__wrap {
+        @include mq(lg) {
+            @include flex(center, center);
+        }
+    }
+}
+.skill {
+    @include mq(sm) {
+    }
+    &__inner {
+        @include inner();
+    }
+    &__title {
+        padding-top: 100px;
+        margin-bottom: 100px;
+        font-size: 50px;
+        position: relative;
+        &::after {
+            content: "Skill";
+            @include after-css();
+        }
+    }
+    &__ul {
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+        @include flex(center, center);
+    }
+    &__item {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+}
+
+.footer {
+    padding: 30px 0 70px;
+    background-color: $main-color;
+    color: $accent-color;
+    text-align: center;
+    a {
+        font-size: 30px;
+        display: block;
+        width: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        transition: 0.3s;
+        &:hover {
+            transform: translateY(-10px);
+        }
+    }
+}
