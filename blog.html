@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Note</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/modern-css-reset/dist/reset.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&family=Zen+Kurenaido&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="openbtn"><span></span><span></span><span></span></div>
+    <nav id="g-nav">
+      <ul>
+        <li><a href="index.html">Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><p class="mail">ito.hiro9854@gmail.com</p></li>
+      </ul>
+    </nav>
+    <div class="circle-bg"></div>
+
+    <main class="work-about">
+      <div class="work-about__header">
+        <h1 class="work-about__title">ブログサイト制作<br />BlogNote</h1>
+        <div class="work-about__mv">
+          <img src="./images/blog-images/work1.webp" alt="" />
+        </div>
+      </div>
+      <section class="work-about__info info">
+        <h2 class="info__h2">概要</h2>
+        <p class="info__text">
+          一年生後期集中授業で自分のブログを制作しました。
+          初めてWordPressを使い、実際にサイトを公開した作品です。
+        </p>
+        <table class="info__table">
+          <tbody>
+            <tr>
+              <td class="info__item">制作時期</td>
+              <td class="info__propaty">2023年7月〜</td>
+            </tr>
+            <tr>
+              <td class="info__item">制作期間</td>
+              <td class="info__propaty">約3ヶ月</td>
+            </tr>
+            <tr>
+              <td class="info__item">制作人数</td>
+              <td class="info__propaty">個人制作</td>
+            </tr>
+            <tr>
+              <td class="info__item">使用したもの</td>
+              <td class="info__propaty">
+                HTML CSS JavaScript Sass Jquery WordPress<br />Illustrator
+                Photoshop VisualStudioCode
+              </td>
+            </tr>
+            <tr>
+              <td class="info__item">URL</td>
+              <td class="info__propaty">
+                <a href="https://hirochan.chillout.jp/blog/" target="_blank"
+                  >https://hirochan.chillout.jp/blog/</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="work-about__font font">
+        <h2 class="font__h2">使用フォント</h2>
+        <div class="font__info">
+          <p class="font__name">「Zen Kurenaido」</p>
+          <small class="font__maker">Google Fonts</small>
+        </div>
+        <div class="font__prevcontent">
+          <p class="font__prev font__prev-work1">あいうえおアイウエオ永</p>
+          <p class="font__prev font__prev-work1">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+          <p class="font__prev font__prev-work1">abcdefghijklmnopqrstuvwxyz</p>
+        </div>
+        <p class="font__text">
+          この作品のコンセプトがキャンパスノートなので、手書き風のフォントとしてこちらのフォントを採用しました。
+          また、実装の簡単さからGoogleフォントを選びました。
+        </p>
+      </section>
+
+      <section class="work-about__design design">
+        <h2 class="design__h2">デザインコンセプト</h2>
+        <div class="design__content">
+          <div class="design__img">
+            <img src="./images/blog-images/work1_psp.webp" alt="" />
+          </div>
+          <div class="design__text">
+            <p>
+              はじめにデザインの大まかな方針を文房具、ノートにしました。それからキャンパスノートをモチーフにすることに決めました。完成版ではモノトーンですが、はじめはヘッダーとフッターの背景色にキャンパスノートでイメージの強い水色にしていました。メインの背景には方眼ノートをデザインしました。
+              その上にさらに文豪具のイラストをいれて、可愛らしさを出しました。
+              見出しの下には、疑似要素で蛍光ペンで引いた風な線をつけました。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="work-about__design design">
+        <h2 class="design__h2">完成版</h2>
+        <div class="design__content">
+          <div class="design__img">
+            <img src="./images/blog-images/work1_pic.webp" alt="" />
+          </div>
+          <div class="design__text">
+            <p>
+              完成版のカテゴリー部分では付箋のように表示したり、プロフィール画像の上に画鋲を刺したりしてよりコンセプトに近づけました。<br />使用したフォントが手書き風なため、よりノートらしい印象に完成しました。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="work-about__point point">
+        <h2 class="point">意識したところ</h2>
+        <p class="point__text">
+          ヘッダーをノートに表紙のようなデザインにしていたので、　
+          めくるようなアニメーションにしたくて試行錯誤しました。
+        </p>
+        <div class="point__img">
+          <img src="./images/blog-images/work1_anim.gif" alt="" />
+        </div>
+        <p class="point__text">
+          カテゴリー一覧の要素、
+          疑似要素を使って影を入れ、付箋の端が少し浮いている雰囲気を再現しました。<br />ここがとても可愛くできたのでお気に入りです。
+        </p>
+        <div class="point__img">
+          <img src="./images/blog-images/work1_point1.webp" alt="" />
+        </div>
+      </section>
+      <section class="summary">
+        <h2 class="summary__h2">作品制作を通して</h2>
+        <p class="summary__text">
+          とても時間がかかりましたが、自分のデザインが形になっていく楽しさを初めて感じることができました。
+          とくにヘッダーのアニメーションの実装は何日もかかったので思い通りに動いた瞬間の気持ちよさは忘れられません。完成の達成感だけで頑張って良かったと思えました。
+          また、最初のデザインにはなかったカテゴリーの付箋のデザインはアイデアを思いついた嬉しさも実装できた喜びもあって、作っていて本当に楽しく、Web制作の楽しさを体感できました。
+        </p>
+      </section>
+    </main>
+    <footer class="footer">
+      <a href="#top">▲</a>
+      <small>©　2024 ITO HIROSHI</small>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/gsap.js"></script>
+  </body>
+</html>

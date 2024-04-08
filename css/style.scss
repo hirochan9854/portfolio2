@@ -54,6 +54,10 @@ a {
 body {
     font-family: "Yomogi", cursive;
     color: $accent-color;
+    font-size: 16px;
+    @include mq(md) {
+        font-size: 18px;
+    }
 }
 /* アクティブになったエリア */
 #g-nav.panelactive {
@@ -94,7 +98,7 @@ body {
     opacity: 0;
     position: absolute;
     z-index: 999;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     a {
@@ -126,16 +130,23 @@ body {
 }
 
 /* リストのレイアウト設定 */
-#g-nav li {
-    text-align: center;
-    list-style: none;
-    a {
-        font-size: 30px;
-        text-decoration: none;
-        padding: 10px;
-        display: block;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
+#g-nav {
+    .mail {
+        margin-top: 200px;
+        color: $main-color;
+        font-size: 14px;
+    }
+    li {
+        text-align: center;
+        list-style: none;
+        a {
+            font-size: 30px;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
     }
 }
 
@@ -223,6 +234,88 @@ body {
         }
     }
 }
+.scrolldown-fade {
+    opacity: 0;
+    animation: fade-anim 0.8s 1s forwards;
+}
+.scrolldown {
+    position: absolute;
+    bottom: 10px;
+    right: 50%;
+    animation: mousemove 1.6s ease-in-out infinite;
+
+    span {
+        position: absolute;
+        left: -15px;
+        bottom: 7vh;
+        color: $accent-color;
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 17px;
+            width: 1px;
+            height: 15px;
+            background: $accent-color;
+            animation: mousepathmove 1.4s linear infinite;
+            opacity: 0;
+        }
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: 2vh;
+        left: -10px;
+        width: 25px;
+        height: 37px;
+        border-radius: 10px;
+        border: 1px solid $accent-color;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 5vh;
+        left: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        border: 1px solid $accent-color;
+    }
+}
+
+@keyframes mousemove {
+    0% {
+        bottom: 70px;
+    }
+    50% {
+        bottom: 65px;
+    }
+    100% {
+        bottom: 70px;
+    }
+}
+
+@keyframes mousepathmove {
+    0% {
+        height: 0;
+        top: 10px;
+        opacity: 0;
+    }
+    50% {
+        height: 15px;
+        opacity: 1;
+    }
+    100% {
+        height: 0;
+        top: 30px;
+        opacity: 0;
+    }
+}
 
 .header {
     background-color: $main-color;
@@ -304,217 +397,6 @@ body {
     }
 }
 
-.main {
-    @include inner();
-    margin-bottom: 150px;
-}
-
-.works {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10%;
-    @include mq(md) {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-}
-
-@keyframes after-anim {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.work {
-    width: 100%;
-    margin: auto;
-
-    &__img {
-        transition: 0.3s;
-        box-shadow:
-            #0000001f 0px 1px 3px,
-            rgba(0, 0, 0, 0.24) 0px 1px 2px;
-        width: 100%;
-        aspect-ratio: 1/1;
-        position: relative;
-        &:hover {
-            img {
-                filter: blur(20px);
-            }
-            box-shadow:
-                rgba(0, 0, 0, 0.19) 0px 10px 20px,
-                rgba(0, 0, 0, 0.23) 0px 6px 6px;
-            border-radius: 15px;
-            &::after {
-                content: "";
-                background: url(../images/musimegane.svg);
-                width: 50%;
-                height: 50%;
-                display: inline-block;
-                position: absolute;
-                transition: 1.5s;
-                top: 25%;
-                left: 25%;
-                animation: after-anim 1.5s;
-            }
-        }
-        img {
-            padding: 15%;
-            transition: 0.5s;
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: contain;
-        }
-    }
-    &__title {
-        margin-top: 10px;
-        font-size: 12px;
-    }
-}
-
-.profile {
-    @include mq(sm) {
-    }
-    &__inner {
-        @include inner();
-    }
-    &__about {
-        @include mq(sm) {
-            @include flex(center, center);
-        }
-    }
-    &__title {
-        padding-top: 100px;
-        margin-bottom: 100px;
-        font-size: 50px;
-        position: relative;
-        &::after {
-            content: "Profile";
-            @include after-css();
-        }
-    }
-    &__img {
-        width: 200px;
-        margin-left: auto;
-        margin-right: auto;
-        overflow: hidden;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-        @include mq(md) {
-            width: 100%;
-            margin: 0;
-        }
-        img {
-            transform: scale(1.1) translateX(13px);
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        @include mq(md) {
-            width: 30%;
-            margin-right: 25px;
-        }
-    }
-    &__text {
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.5;
-        width: fit-content;
-        @include mq(md) {
-            width: 30%;
-            margin: 0;
-            margin-left: 25px;
-        }
-    }
-    &__name {
-        margin-top: 50px;
-        text-align: center;
-        font-size: 30px;
-        margin-bottom: 30px;
-        @include mq(md) {
-            text-align-last: left;
-            margin-top: 0;
-        }
-    }
-}
-
-.hobby {
-    &__inner {
-        @include inner();
-    }
-
-    &__title {
-        padding-top: 100px;
-        margin-bottom: 100px;
-        font-size: 50px;
-        position: relative;
-        &::after {
-            content: "hobby";
-            @include after-css();
-        }
-    }
-    &__text {
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
-        @include mq(lg) {
-            margin: 0;
-        }
-    }
-    &__list {
-        @include flex(center, center);
-        flex-wrap: nowrap;
-        margin-top: 50px;
-        @include mq(lg) {
-            margin: 0;
-        }
-    }
-    &__item {
-        margin: 0 15px;
-        width: 20%;
-        @include mq(sm) {
-            width: 70px;
-        }
-    }
-    &__wrap {
-        @include mq(lg) {
-            @include flex(center, center);
-        }
-    }
-}
-.skill {
-    @include mq(sm) {
-    }
-    &__inner {
-        @include inner();
-    }
-    &__title {
-        padding-top: 100px;
-        margin-bottom: 100px;
-        font-size: 50px;
-        position: relative;
-        &::after {
-            content: "Skill";
-            @include after-css();
-        }
-    }
-    &__ul {
-        margin-left: auto;
-        margin-right: auto;
-        width: 60%;
-        @include flex(center, center);
-    }
-    &__item {
-        margin-right: 20px;
-        margin-left: 20px;
-    }
-}
-
 .footer {
     padding: 30px 0 70px;
     background-color: $main-color;
@@ -529,6 +411,428 @@ body {
         transition: 0.3s;
         &:hover {
             transform: translateY(-10px);
+        }
+    }
+}
+
+@keyframes after-anim {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+main {
+    @include inner();
+}
+.top {
+    margin-bottom: 150px;
+    .works {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10%;
+        @include mq(md) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+    }
+    .work {
+        width: 100%;
+        margin: auto;
+
+        &__img {
+            transition: 0.3s;
+            box-shadow:
+                #0000001f 0px 1px 3px,
+                rgba(0, 0, 0, 0.24) 0px 1px 2px;
+            width: 100%;
+            aspect-ratio: 1/1;
+            position: relative;
+            &:hover {
+                img {
+                    filter: blur(20px);
+                }
+                box-shadow:
+                    rgba(0, 0, 0, 0.19) 0px 10px 20px,
+                    rgba(0, 0, 0, 0.23) 0px 6px 6px;
+                border-radius: 15px;
+                &::after {
+                    content: "";
+                    background: url(../images/top-images/musimegane.svg) center center no-repeat;
+                    width: 30%;
+                    height: 30%;
+                    display: inline-block;
+                    position: absolute;
+                    transition: 1.5s;
+                    top: 35%;
+                    left: 35%;
+                    animation: after-anim 1.5s;
+                }
+            }
+            img {
+                padding: 15%;
+                transition: 0.5s;
+                width: 100%;
+                aspect-ratio: 1/1;
+                object-fit: contain;
+            }
+        }
+        &__title {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+    }
+}
+.about {
+    .profile {
+        @include mq(sm) {
+        }
+        margin-bottom: 30vh;
+        &__inner {
+            @include inner();
+        }
+        &__about {
+            @include mq(sm) {
+                @include flex(center, center);
+            }
+        }
+        &__title {
+            padding-top: 100px;
+            margin-bottom: 100px;
+            font-size: 50px;
+            position: relative;
+            &::after {
+                content: "Profile";
+                @include after-css();
+            }
+        }
+        &__img {
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            @include mq(md) {
+                width: 100%;
+                margin: 0;
+            }
+            img {
+                transform: scale(1.1) translateX(13px);
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+            @include mq(md) {
+                width: 30%;
+                margin-right: 25px;
+            }
+        }
+        &__text {
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+            width: fit-content;
+            @include mq(md) {
+                width: 30%;
+                margin: 0;
+                margin-left: 25px;
+            }
+        }
+        &__name {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 30px;
+            @include mq(md) {
+                text-align-last: left;
+                margin-top: 0;
+            }
+        }
+    }
+
+    .hobby {
+        margin-bottom: 30vh;
+        &__inner {
+            @include inner();
+        }
+
+        &__title {
+            padding-top: 100px;
+            margin-bottom: 100px;
+            font-size: 50px;
+            position: relative;
+            &::after {
+                content: "hobby";
+                @include after-css();
+            }
+        }
+        &__text {
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            @include mq(lg) {
+                margin: 0;
+            }
+        }
+        &__list {
+            @include flex(center, center);
+            flex-wrap: nowrap;
+            margin-top: 50px;
+            @include mq(lg) {
+                margin: 0;
+            }
+        }
+        &__item {
+            margin: 0 15px;
+            width: 20%;
+            @include mq(sm) {
+                width: 70px;
+            }
+        }
+        &__wrap {
+            @include mq(lg) {
+                @include flex(center, center);
+            }
+        }
+    }
+    .skill {
+        margin-bottom: 100px;
+        @include mq(sm) {
+        }
+        &__inner {
+            @include inner();
+        }
+        &__title {
+            padding-top: 100px;
+            margin-bottom: 100px;
+            font-size: 50px;
+            position: relative;
+            &::after {
+                content: "Skill";
+                @include after-css();
+            }
+        }
+        &__text {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        &__ul {
+            margin-left: auto;
+            margin-right: auto;
+            @include flex(center, center);
+        }
+        &__item {
+            margin-right: 20px;
+            margin-left: 20px;
+            font-size: 20px;
+        }
+    }
+}
+
+.work-about {
+    padding-top: 15vh;
+    margin-bottom: 150px;
+    h2 {
+        margin-top: 70px;
+        margin-bottom: 30px;
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    &__header {
+        height: 85vh;
+        @include mq(lg) {
+            @include flex();
+        }
+    }
+    &__title {
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 50px;
+        padding-left: 10px;
+        font-size: 20px;
+        border-left: 10px solid $accent-color;
+        @include mq(lg) {
+            text-align: left;
+            padding-top: 0;
+            margin: 0;
+        }
+    }
+    &__mv {
+        box-shadow:
+            rgba(0, 0, 0, 0.19) 0px 10px 20px,
+            rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        top: 20vh;
+        width: 80%;
+        @include mq(md) {
+            width: 60%;
+        }
+        @include mq(lg) {
+            top: 0;
+            margin-right: 0;
+        }
+    }
+
+    .info {
+        &__table {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2px;
+            width: 100%;
+            a {
+                color: $accent-color;
+                word-break: break-all;
+                text-decoration: underline;
+            }
+        }
+        &__text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    }
+    .info__table,
+    td {
+        padding: 5px;
+        @include mq(md) {
+            padding: 15px;
+        }
+        border: 1px solid $accent-color;
+        border-collapse: collapse;
+    }
+    .design {
+        &__wrap {
+            @include mq(md) {
+                @include flex();
+            }
+        }
+
+        &__img {
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 30px;
+            @include mq(md) {
+                margin: 0;
+                width: 35%;
+            }
+        }
+        &__text {
+            @include mq(md) {
+                width: 60%;
+            }
+        }
+    }
+
+    .font {
+        &__info {
+            margin-top: 30px;
+            @include flex(center, center);
+        }
+        &__prevcontent {
+            @include mq(md) {
+                @include flex(center, center);
+            }
+            margin: 40px auto;
+        }
+        &__text {
+            text-align: center;
+        }
+        &__prev {
+            display: block;
+            text-align: center;
+            font-size: 16px;
+            margin-left: 5px;
+            margin-right: 5px;
+            letter-spacing: 0.1em;
+
+            &-work1 {
+                font-family: "Zen Kurenaido", sans-serif;
+            }
+            &-leo {
+                font-family: "M PLUS Rounded 1c", sans-serif;
+            }
+            &-work3 {
+                font-family: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro",
+                    "ヒラギノ角ゴ Pro";
+            }
+            &-work4 {
+                margin-bottom: 15px;
+                img {
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 250px;
+                }
+            }
+        }
+    }
+    .point {
+        &__img {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            width: 70%;
+        }
+    }
+
+    .design {
+        &__content {
+            margin-top: 50px;
+            @include mq(md) {
+                @include flex(flexstart);
+            }
+        }
+
+        &__text {
+            &-color {
+                color: #b5b2d9;
+            }
+            margin-top: 40px;
+        }
+        &__img {
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            max-height: 500px;
+            overflow: scroll;
+            @include mq(md) {
+                margin: 0;
+            }
+        }
+        @include mq(sm) {
+            &__img {
+                position: relative;
+
+                @include mq(md) {
+                    width: 35%;
+                    max-height: 600px;
+                }
+
+                img {
+                    position: relative;
+                    z-index: 1;
+                }
+            }
+            &__text {
+                @include mq(md) {
+                    margin-top: 0;
+                }
+
+                img {
+                    width: 70%;
+                }
+                line-height: 2;
+                @include mq(md) {
+                    width: 60%;
+                }
+            }
         }
     }
 }
