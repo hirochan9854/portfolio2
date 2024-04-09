@@ -1,7 +1,6 @@
 @charset "UTF-8";
 /* SETTING
 ------------------------------*/
-@import url("https://fonts.googleapis.com/css2?family=Yomogi&display=swap");
 img {
   max-width: 100%;
   height: auto;
@@ -116,9 +115,17 @@ body {
 }
 /* リストのレイアウト設定 */
 #g-nav .mail {
-  margin-top: 150px;
+  margin-top: 30px;
   color: #bce2e8;
-  font-size: 14px;
+  font-size: 16px;
+}
+#g-nav .git {
+  margin: 0 auto;
+  margin-top: 150px;
+  width: 70px;
+}
+#g-nav .git img {
+  margin: 0 auto;
 }
 #g-nav .logo {
   width: 100px;
@@ -275,6 +282,15 @@ body {
   -webkit-animation: fade-anim 0.8s 1.2s forwards;
           animation: fade-anim 0.8s 1.2s forwards;
 }
+.header__title .o-ls {
+  letter-spacing: -4px;
+}
+.header__title .l-ls {
+  letter-spacing: -10px;
+}
+.header__title .i-ls {
+  letter-spacing: -6px;
+}
 
 .fade span:nth-child(1) {
   -webkit-animation: fade-anim 0.8s 0s forwards;
@@ -289,13 +305,12 @@ body {
 .fade span:nth-child(3) {
   -webkit-animation: fade-anim 0.8s 0.2s forwards;
           animation: fade-anim 0.8s 0.2s forwards;
-  padding-right: 5px;
+  letter-spacing: 15px;
 }
 
 .fade span:nth-child(4) {
   -webkit-animation: fade-anim 0.8s 0.3s forwards;
           animation: fade-anim 0.8s 0.3s forwards;
-  padding-left: 5px;
 }
 
 .fade span:nth-child(5) {
@@ -787,7 +802,9 @@ main {
   align-items: center;
 }
 .work-about .font__prevcontent {
-  margin: 40px auto;
+  margin-top: 10px;
+  margin: 0 auto;
+  margin-bottom: 40px;
 }
 @media screen and (min-width: 768px) {
   .work-about .font__prevcontent {
@@ -803,10 +820,11 @@ main {
 .work-about .font__prev {
   display: block;
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
   margin-left: 5px;
   margin-right: 5px;
   letter-spacing: 0.1em;
+  word-break: break-all;
 }
 .work-about .font__prev-work1 {
   font-family: "Zen Kurenaido", sans-serif;
@@ -817,8 +835,10 @@ main {
 .work-about .font__prev-work3 {
   font-family: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro";
 }
-.work-about .font__prev-work4 {
-  margin-bottom: 15px;
+@media screen and (min-width: 768px) {
+  .work-about .font__prev-work4 {
+    margin-bottom: 15px;
+  }
 }
 .work-about .font__prev-work4 img {
   margin-left: auto;

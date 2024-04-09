@@ -3,8 +3,6 @@
 $main-color: #bce2e8;
 $accent-color: #192a3c;
 
-@import url("https://fonts.googleapis.com/css2?family=Yomogi&display=swap");
-
 $breakpoints: (
     "sm": "screen and (min-width: 400px)",
     "md": "screen and (min-width: 768px)",
@@ -136,9 +134,18 @@ body {
 /* リストのレイアウト設定 */
 #g-nav {
     .mail {
-        margin-top: 150px;
+        margin-top: 30px;
         color: $main-color;
-        font-size: 14px;
+        font-size: 16px;
+    }
+
+    .git {
+        margin: 0 auto;
+        margin-top: 150px;
+        width: 70px;
+        img {
+            margin: 0 auto;
+        }
     }
     .logo {
         width: 100px;
@@ -276,6 +283,15 @@ body {
     &__title {
         opacity: 0;
         animation: fade-anim 0.8s 1.2s forwards;
+        .o-ls {
+            letter-spacing: -4px;
+        }
+        .l-ls {
+            letter-spacing: -10px;
+        }
+        .i-ls {
+            letter-spacing: -6px;
+        }
     }
 }
 
@@ -287,12 +303,11 @@ body {
 }
 .fade span:nth-child(3) {
     animation: fade-anim 0.8s 0.2s forwards;
-    padding-right: 5px;
+    letter-spacing: 15px;
 }
 
 .fade span:nth-child(4) {
     animation: fade-anim 0.8s 0.3s forwards;
-    padding-left: 5px;
 }
 
 .fade span:nth-child(5) {
@@ -692,7 +707,9 @@ main {
             @include mq(md) {
                 @include flex(center, center);
             }
-            margin: 40px auto;
+            margin-top: 10px;
+            margin: 0 auto;
+            margin-bottom: 40px;
         }
         &__text {
             text-align: center;
@@ -700,10 +717,11 @@ main {
         &__prev {
             display: block;
             text-align: center;
-            font-size: 16px;
+            font-size: 18px;
             margin-left: 5px;
             margin-right: 5px;
             letter-spacing: 0.1em;
+            word-break: break-all;
 
             &-work1 {
                 font-family: "Zen Kurenaido", sans-serif;
@@ -716,7 +734,9 @@ main {
                     "ヒラギノ角ゴ Pro";
             }
             &-work4 {
-                margin-bottom: 15px;
+                @include mq(md) {
+                    margin-bottom: 15px;
+                }
                 img {
                     margin-left: auto;
                     margin-right: auto;
