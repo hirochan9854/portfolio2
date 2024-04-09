@@ -434,7 +434,7 @@ main {
                 }
             }
             img {
-                padding: 15%;
+                padding: 20%;
                 transition: 0.5s;
                 width: 100%;
                 aspect-ratio: 1/1;
@@ -442,6 +442,7 @@ main {
             }
         }
         &__title {
+            margin-top: 10px;
             font-size: 12px;
             @include mq(md) {
                 font-size: 16px;
@@ -553,7 +554,7 @@ main {
             }
         }
         &__item {
-            margin: 0 15px;
+            margin-left: 30px;
             width: 20%;
             @include mq(sm) {
                 width: 70px;
@@ -561,7 +562,7 @@ main {
         }
         &__wrap {
             @include mq(lg) {
-                @include flex(center, center);
+                @include flex();
             }
         }
     }
